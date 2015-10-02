@@ -1,4 +1,4 @@
-# Caspeco
+# PHP Caspeco
 
 A Caspeco API library for PHP with Laravel support. Work in progress...
 
