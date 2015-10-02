@@ -21,7 +21,8 @@ class Caspeco
     /**
      * Create a new Caspeco instance.
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 }
