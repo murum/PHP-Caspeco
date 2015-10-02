@@ -1,0 +1,38 @@
+{
+    "name": "schimpanz/caspeco",
+    "description": "A Caspeco API library with Laravel support",
+    "license": "MIT",
+    "keywords": ["caspeco", "payments", "laravel"],
+    "authors": [
+        {
+            "name": "Vincent Klaiber",
+            "email": "vincent@schimpanz.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Schimpanz\\Caspeco\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Schimpanz\\Tests\\Caspeco\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
