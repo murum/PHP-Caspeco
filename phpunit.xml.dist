@@ -14,7 +14,7 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="PHP Caspeco Test Suite">
+        <testsuite name="Caspeco Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>

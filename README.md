@@ -1,4 +1,4 @@
-# PHP Caspeco
+# Caspeco
 
 A Caspeco API library for PHP with Laravel support. Work in progress...
 
@@ -32,4 +32,4 @@ If you want you can use the [facade](http://laravel.com/docs/facades). Add the r
 
 ## License
 
-PHP Caspeco is licensed under [The MIT License (MIT)](LICENSE).
+Caspeco is licensed under [The MIT License (MIT)](LICENSE).
