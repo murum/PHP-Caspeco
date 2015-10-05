@@ -19,10 +19,19 @@ namespace Schimpanz\Caspeco;
 class Caspeco
 {
     /**
-     * Create a new Caspeco instance.
+     * The config repository instance.
+     *
+     * @var \Schimpanz\Caspeco\Config
      */
-    public function __construct()
+    protected $config;
+
+    /**
+     * Create a new Caspeco instance.
+     *
+     * @param array $config
+     */
+    public function __construct(array $config = [])
     {
-        //
+        $this->config = new Config($config);
     }
 }
