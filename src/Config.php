@@ -25,7 +25,7 @@ class Config extends Repository implements RepositoryInterface
     /**
      * The Caspeco API url.
      */
-    const URL = 'http://pay.caspeco.net';
+    const URL = 'https://pay.caspeco.net';
 
     /**
      * Create a new config instance.
