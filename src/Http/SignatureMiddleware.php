@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Http\Caspeco;
+namespace Schimpanz\Caspeco\Http;
 
 use Illuminate\Contracts\Config\Repository;
 use Psr\Http\Message\RequestInterface;

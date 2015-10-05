@@ -1,6 +1,6 @@
 <?php
 
-namespace Schimpanz\Http\Caspeco;
+namespace Schimpanz\Caspeco\Http;
 
 use DateTime;
 use DateTimeZone;
@@ -44,11 +44,11 @@ class Signature
      */
     public function getAuthorization($uri, $date, $digest, $host)
     {
-        $signature = sprintf('(request-target): %s\nhost: %s\ndate: %s\ndigest: %s', [$uri, $host, $date, $digest]);
+        $signature = sprintf('(request-target): %s\nhost: %s\ndate: %s\ndigest: %s', $uri, $host, $date, $digest);
 
         $hash = base64_encode(hash_hmac('sha256', $this->config->get('key'), $signature));
 
-        return sprintf('Signature keyId="%s",algorithm="hmac-sha256",headers="(request-target) host date digest",signature="%s"', [$this->config->get('id'), $hash]);
+        return sprintf('Signature keyId="%s",algorithm="hmac-sha256",headers="(request-target) host date digest",signature="%s"', $this->config->get('id'), $hash);
     }
 
     /**
