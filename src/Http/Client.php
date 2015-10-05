@@ -29,7 +29,7 @@ class Client extends HttpClient
      */
     public function __construct(Repository $config)
     {
-        parent::__construct();
+        parent::__construct(['base_url' => $config->get('url')]);
 
         $handler = HandlerStack::create();
         $handler->push(new SignatureMiddleware($config));
