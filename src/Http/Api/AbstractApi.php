@@ -13,7 +13,6 @@ namespace Schimpanz\Caspeco\Http\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Contracts\Config\Repository;
 use InvalidArgumentException;
 use Schimpanz\Caspeco\Http\Signature;
 

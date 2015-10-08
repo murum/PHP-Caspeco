@@ -36,7 +36,7 @@ class Caspeco
     public function __construct(array $config = [])
     {
         if (!array_key_exists('url', $config)) {
-            $config['url'] =  'https://pay.caspeco.net';
+            $config['url'] = 'https://pay.caspeco.net';
         }
 
         if (!array_key_exists('id', $config)) {
