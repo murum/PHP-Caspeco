@@ -11,8 +11,11 @@
 
 namespace Schimpanz\Caspeco;
 
-use BadMethodCallException;
 use InvalidArgumentException;
+use Schimpanz\Caspeco\Http\Api\Cards;
+use Schimpanz\Caspeco\Http\Api\Charges;
+use Schimpanz\Caspeco\Http\Api\Customers;
+use Schimpanz\Caspeco\Http\Api\Merchants;
 
 /**
  * This is the Caspeco class.
@@ -51,21 +54,42 @@ class Caspeco
     }
 
     /**
-     * Dynamically handle missing methods.
+     * Get the cards endpoint.
      *
-     * @param string $method
-     * @param array $parameters
-     *
-     * @throws \BadMethodCallException
+     * @return \Schimpanz\Caspeco\Http\Api\Cards
      */
-    public function __call($method, array $parameters = [])
+    public function cards()
     {
-        $class = '\\Schimpanz\\Caspeco\\Http\\Api\\'.ucwords($method);
+        return new Cards($this->config);
+    }
 
-        if (!class_exists($class)) {
-            throw new BadMethodCallException("Undefined method [{$method}] called.");
-        }
+    /**
+     * Get the charges endpoint.
+     *
+     * @return \Schimpanz\Caspeco\Http\Api\Charges
+     */
+    public function charges()
+    {
+        return new Charges($this->config);
+    }
 
-        return new $class($this->config);
+    /**
+     * Get the customers endpoint.
+     *
+     * @return \Schimpanz\Caspeco\Http\Api\Customers
+     */
+    public function customers()
+    {
+        return new Customers($this->config);
+    }
+
+    /**
+     * Get the merchants endpoint.
+     *
+     * @return \Schimpanz\Caspeco\Http\Api\Merchants
+     */
+    public function merchants()
+    {
+        return new Merchants($this->config);
     }
 }
