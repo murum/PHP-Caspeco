@@ -49,16 +49,11 @@ final class Signature
      */
     public function getHeaders($method, $uri, $body)
     {
-        $uri = '';
-        $method = '';
-        $body = '';
-        $date = $this->getDate();
-        $digest = $this->getDigest('');
         $host = $this->getHost();
+        $date = $this->getDate();
+        $digest = $this->getDigest(json_encode($body));
         $signature = $this->getSignature($date, $digest, $host, $method, $uri);
         $authorization = $this->getAuthorization($signature);
-
-        echo '"Signature":'.$signature."\n";
 
         return [
             'Accept' => 'application/json; charset=utf-8',
@@ -80,9 +75,7 @@ final class Signature
     {
         $hash = base64_encode(hash_hmac('sha256', $signature, base64_decode($this->config['secret']), true));
 
-        die(var_dump($signature, $hash));
-
-        return sprintf('Signature keyId="%s",algorithm="hmac-sha256",headers="(request-target) host date digest",signature="%s"', $this->config->get('id'), $hash);
+        return sprintf('Signature keyId="%s",algorithm="hmac-sha256",headers="(request-target) host date digest",signature="%s"', $this->config['id'], $hash);
     }
 
     /**
@@ -96,7 +89,7 @@ final class Signature
      */
     protected function getSignature($date, $digest, $host, $method, $uri)
     {
-        return preg_replace('/\s+/', ' ', implode(' ', [
+        return preg_replace('/\s+/', ' ', implode('\n', [
             strtolower(sprintf('(request-target): %s %s', $method, $uri)),
             sprintf('host: %s', $host),
             sprintf('date: %s', $date),
@@ -117,7 +110,7 @@ final class Signature
             $time = new DateTime('now', new DateTimeZone('GMT'));
         }
 
-        return 'Wed, 07 Oct 2015 07:27:41 GMT'; //$time->format('D, d M Y H:i:s').' GMT';
+        return $time->format('D, d M Y H:i:s').' GMT';
     }
 
     /**

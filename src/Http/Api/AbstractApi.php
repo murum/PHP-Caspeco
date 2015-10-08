@@ -65,6 +65,7 @@ abstract class AbstractApi
             throw new InvalidArgumentException('Magic request methods require a URI and optional options array');
         }
 
+
         $uri = $this->buildUriFromString($args[0]);
         $options = isset($args[1]) ? $args[1] : [];
         $params = isset($options['form_params']) ? $options['form_params'] : [];
