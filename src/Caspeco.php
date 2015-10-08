@@ -11,6 +11,9 @@
 
 namespace Schimpanz\Caspeco;
 
+use BadMethodCallException;
+use InvalidArgumentException;
+
 /**
  * This is the Caspeco class.
  *
@@ -19,9 +22,9 @@ namespace Schimpanz\Caspeco;
 class Caspeco
 {
     /**
-     * The config repository instance.
+     * The config array.
      *
-     * @var \Schimpanz\Caspeco\Config
+     * @var array
      */
     protected $config;
 
@@ -32,6 +35,37 @@ class Caspeco
      */
     public function __construct(array $config = [])
     {
-        $this->config = new Config($config);
+        if (!array_key_exists('url', $config)) {
+            $config['url'] =  'https://pay.caspeco.net';
+        }
+
+        if (!array_key_exists('id', $config)) {
+            throw new InvalidArgumentException('The Caspeco client configuration is missing the "id" parameter.');
+        }
+
+        if (!array_key_exists('secret', $config)) {
+            throw new InvalidArgumentException('The Caspeco client configuration is missing the "secret" parameter.');
+        }
+
+        $this->config = $config;
+    }
+
+    /**
+     * Dynamically handle missing methods.
+     *
+     * @param string $method
+     * @param array $parameters
+     *
+     * @throws \BadMethodCallException
+     */
+    public function __call($method, array $parameters = [])
+    {
+        $class = '\\Schimpanz\\Caspeco\\Http\\Api\\'.ucwords($method);
+
+        if (!class_exists($class)) {
+            throw new BadMethodCallException("Undefined method [{$method}] called.");
+        }
+
+        return new $class($this->config);
     }
 }

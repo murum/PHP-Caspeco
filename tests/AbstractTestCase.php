@@ -11,14 +11,25 @@
 
 namespace Schimpanz\Tests\Caspeco;
 
-use PHPUnit_Framework_TestCase;
+use GrahamCampbell\TestBench\AbstractPackageTestCase;
+use Schimpanz\Caspeco\CaspecoServiceProvider;
 
 /**
  * This is the abstract test case class.
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
+abstract class AbstractTestCase extends AbstractPackageTestCase
 {
-    //
+    /**
+     * Get the service provider class.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return string
+     */
+    protected function getServiceProviderClass($app)
+    {
+        return CaspecoServiceProvider::class;
+    }
 }

@@ -1,54 +1,107 @@
 <?php
 
+/*
+ * This file is part of Caspeco.
+ *
+ (c) Schimpanz Solutions <info@schimpanz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Schimpanz\Caspeco\Http;
 
 use DateTime;
 use DateTimeZone;
-use Illuminate\Contracts\Config\Repository;
 
-class Signature
+/**
+ * This is the signature middleware class.
+ *
+ * @author Vincent Klaiber <vincent@schimpanz.com>
+ */
+final class Signature
 {
     /**
-     * The acceptance header.
+     * The config array.
      *
-     * @var string
-     */
-    const ACCEPT = 'application/json; charset=utf-8';
-
-    /**
-     * The config repository instance.
-     *
-     * @var \Illuminate\Contracts\Config\Repository
+     * @var array
      */
     protected $config;
 
     /**
-     * Create a new signature instance.
+     * Create a new signature middleware.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
+     * @param array $config
      */
-    public function __construct(Repository $config)
+    public function __construct(array $config)
     {
-        $this->config = $config;
+        $this->config= $config;
+    }
+
+    /**
+     * Get the headers.
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $body
+     *
+     * @return array
+     */
+    public function getHeaders($method, $uri, $body)
+    {
+        $uri = '';
+        $method = '';
+        $body = '';
+        $date = $this->getDate();
+        $digest = $this->getDigest('');
+        $host = $this->getHost();
+        $signature = $this->getSignature($date, $digest, $host, $method, $uri);
+        $authorization = $this->getAuthorization($signature);
+
+        echo '"Signature":'.$signature."\n";
+
+        return [
+            'Accept' => 'application/json; charset=utf-8',
+            'Authorization' => $authorization,
+            'Date' => $date,
+            'Digest' => $digest,
+            'Host' => $host,
+        ];
     }
 
     /**
      * Get the authorization header.
      *
-     * @param string $uri
-     * @param string $host
-     * @param string $date
-     * @param string $digest
+     * @param $signature
      *
      * @return string
      */
-    public function getAuthorization($uri, $date, $digest, $host)
+    protected function getAuthorization($signature)
     {
-        $signature = sprintf('(request-target): %s\nhost: %s\ndate: %s\ndigest: %s', $uri, $host, $date, $digest);
+        $hash = base64_encode(hash_hmac('sha256', $signature, base64_decode($this->config['secret']), true));
 
-        $hash = base64_encode(hash_hmac('sha256', $this->config->get('key'), $signature));
+        die(var_dump($signature, $hash));
 
         return sprintf('Signature keyId="%s",algorithm="hmac-sha256",headers="(request-target) host date digest",signature="%s"', $this->config->get('id'), $hash);
+    }
+
+    /**
+     * @param \DateTime $date
+     * @param string $digest
+     * @param string $host
+     * @param string $method
+     * @param string $uri
+     *
+     * @return string
+     */
+    protected function getSignature($date, $digest, $host, $method, $uri)
+    {
+        return preg_replace('/\s+/', ' ', implode(' ', [
+            strtolower(sprintf('(request-target): %s %s', $method, $uri)),
+            sprintf('host: %s', $host),
+            sprintf('date: %s', $date),
+            sprintf('digest: %s', $digest),
+        ]));
     }
 
     /**
@@ -58,25 +111,25 @@ class Signature
      *
      * @return string
      */
-    public function getDate(DateTime $time = null)
+    protected function getDate(DateTime $time = null)
     {
         if (!$time) {
             $time = new DateTime('now', new DateTimeZone('GMT'));
         }
 
-        return $time->format('D, d M Y H:i:s').' GMT\n';
+        return 'Wed, 07 Oct 2015 07:27:41 GMT'; //$time->format('D, d M Y H:i:s').' GMT';
     }
 
     /**
      * Get the digest hash header.
      *
-     * @param string $uri
+     * @param string $body
      *
      * @return string
      */
-    public function getDigest($uri)
+    protected function getDigest($body)
     {
-        return 'SHA-256='.hash('sha256', $uri);
+        return 'SHA-256='.base64_encode(hash('sha256', $body, true));
     }
 
     /**
@@ -84,8 +137,8 @@ class Signature
      *
      * @return string
      */
-    public function getHost()
+    protected function getHost()
     {
-        return preg_replace('#^https?://#', '', $this->config->get('url'));
+        return preg_replace('#^https?://#', '', $this->config['url']);
     }
 }
