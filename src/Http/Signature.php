@@ -51,9 +51,11 @@ final class Signature
     {
         $host = $this->getHost();
         $date = $this->getDate();
-        $digest = $this->getDigest(json_encode($body));
+        $digest = $this->getDigest($method !== 'get' ? json_encode($body) : '');
         $signature = $this->getSignature($date, $digest, $host, $method, $uri);
         $authorization = $this->getAuthorization($signature);
+
+        echo 'Signature:'.$signature."\n";
 
         return [
             'Accept' => 'application/json; charset=utf-8',
