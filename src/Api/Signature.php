@@ -134,6 +134,8 @@ final class Signature
      */
     protected function getHost()
     {
-        return preg_replace('#^https?://#', '', $this->config['url']);
+        preg_match('/([a-z0-9\-]+\.){1,2}[a-z]{2,4}/', $this->config['url'], $matches);
+
+        return $matches[0];
     }
 }
