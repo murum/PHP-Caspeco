@@ -12,10 +12,10 @@
 namespace Schimpanz\Caspeco;
 
 use InvalidArgumentException;
-use Schimpanz\Caspeco\Http\Api\Cards;
-use Schimpanz\Caspeco\Http\Api\Charges;
-use Schimpanz\Caspeco\Http\Api\Customers;
-use Schimpanz\Caspeco\Http\Api\Merchants;
+use Schimpanz\Caspeco\Api\Cards;
+use Schimpanz\Caspeco\Api\Charges;
+use Schimpanz\Caspeco\Api\Customers;
+use Schimpanz\Caspeco\Api\Merchants;
 
 /**
  * This is the Caspeco class.

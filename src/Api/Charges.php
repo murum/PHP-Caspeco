@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco\Http\Api;
+namespace Schimpanz\Caspeco\Api;
 
 /**
  * This is the charges class.

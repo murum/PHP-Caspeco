@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco\Http\Api;
+namespace Schimpanz\Caspeco\Api;
 
 /**
- * This is the merchants class.
+ * This is the customers class.
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-final class Merchants extends AbstractApi
+final class Customers extends AbstractApi
 {
     /**
-     * Create a new merchant.
+     * Create a new customer.
      *
      * @param array $params
      *
@@ -27,11 +27,11 @@ final class Merchants extends AbstractApi
      */
     public function create($params = [])
     {
-        return $this->post('merchants', ['form_params' => $params]);
+        return $this->post('customers', ['form_params' => $params]);
     }
 
     /**
-     * Get a merchant by their id.
+     * Get a customer by their id.
      *
      * @param int $id
      *
@@ -39,6 +39,6 @@ final class Merchants extends AbstractApi
      */
     public function find($id)
     {
-        return $this->get('merchants/'.$id);
+        return $this->get('customers/'.$id);
     }
 }

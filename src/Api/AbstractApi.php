@@ -9,12 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco\Http\Api;
+namespace Schimpanz\Caspeco\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use InvalidArgumentException;
-use Schimpanz\Caspeco\Http\Signature;
 
 /**
  * This is the abstract api class.
