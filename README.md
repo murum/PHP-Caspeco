@@ -22,13 +22,13 @@ composer require schimpanz/pushwoosh
 Add the service provider to ```config/app.php``` in the `providers` array.
 
 ```php
-'Schimpanz\Caspeco\CaspecoServiceProvider'
+Schimpanz\Caspeco\CaspecoServiceProvider::class
 ```
 
 If you want you can use the [facade](http://laravel.com/docs/facades). Add the reference in ```config/app.php``` to your aliases array.
 
 ```php
-'Caspeco' => 'Schimpanz\Caspeco\Facades\Caspeco'
+'Caspeco' => Schimpanz\Caspeco\Facades\Caspeco::class
 ```
 
 ## License
