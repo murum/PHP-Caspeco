@@ -56,7 +56,7 @@ class Caspeco
     /**
      * Get the cards endpoint.
      *
-     * @return \Schimpanz\Caspeco\Http\Api\Cards
+     * @return \Schimpanz\Caspeco\Http\Cards
      */
     public function cards()
     {
