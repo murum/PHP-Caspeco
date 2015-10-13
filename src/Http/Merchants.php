@@ -16,7 +16,7 @@ namespace Schimpanz\Caspeco\Http;
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-final class Merchants extends AbstractApi
+final class Merchants extends AbstractClient
 {
     /**
      * Create a new merchant.

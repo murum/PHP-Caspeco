@@ -16,7 +16,7 @@ namespace Schimpanz\Caspeco\Http;
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-final class Cards extends AbstractApi
+final class Cards extends AbstractClient
 {
     /**
      * Create a customer card.

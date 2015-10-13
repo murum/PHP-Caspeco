@@ -15,11 +15,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
 /**
- * This is the abstract api class.
+ * This is the abstract client class.
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-abstract class AbstractApi
+abstract class AbstractClient
 {
     /**
      * Create a new abstract api instance.

@@ -16,7 +16,7 @@ namespace Schimpanz\Caspeco\Http;
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-final class Customers extends AbstractApi
+final class Customers extends AbstractClient
 {
     /**
      * Create a new customer.

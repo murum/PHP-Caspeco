@@ -16,7 +16,7 @@ namespace Schimpanz\Caspeco\Http;
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-final class Charges extends AbstractApi
+final class Charges extends AbstractClient
 {
     /**
      * Capture a charge by their id.
