@@ -55,8 +55,6 @@ final class Signature
         $signature = $this->getSignature($date, $digest, $host, $method, $uri);
         $authorization = $this->getAuthorization($signature);
 
-        echo 'Signature:'.$signature."\n";
-
         return [
             'Accept' => 'application/json; charset=utf-8',
             'Authorization' => $authorization,
@@ -91,12 +89,9 @@ final class Signature
      */
     protected function getSignature($date, $digest, $host, $method, $uri)
     {
-        return preg_replace('/\s+/', ' ', implode('\n', [
-            strtolower(sprintf('(request-target): %s %s', $method, $uri)),
-            sprintf('host: %s', $host),
-            sprintf('date: %s', $date),
-            sprintf('digest: %s', $digest),
-        ]));
+        $target = preg_replace('/\s+/', ' ', strtolower(sprintf('%s %s', $method, $uri)));
+
+        return "(request-target): {$target}\nhost: {$host}\ndate: {$date}\ndigest: {$digest}";
     }
 
     /**
