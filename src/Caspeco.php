@@ -12,10 +12,10 @@
 namespace Schimpanz\Caspeco;
 
 use InvalidArgumentException;
-use Schimpanz\Caspeco\Api\Cards;
-use Schimpanz\Caspeco\Api\Charges;
-use Schimpanz\Caspeco\Api\Customers;
-use Schimpanz\Caspeco\Api\Merchants;
+use Schimpanz\Caspeco\Http\Cards;
+use Schimpanz\Caspeco\Http\Charges;
+use Schimpanz\Caspeco\Http\Customers;
+use Schimpanz\Caspeco\Http\Merchants;
 
 /**
  * This is the Caspeco class.
@@ -66,7 +66,7 @@ class Caspeco
     /**
      * Get the charges endpoint.
      *
-     * @return \Schimpanz\Caspeco\Http\Api\Charges
+     * @return \Schimpanz\Caspeco\Http\Charges
      */
     public function charges()
     {
@@ -76,7 +76,7 @@ class Caspeco
     /**
      * Get the customers endpoint.
      *
-     * @return \Schimpanz\Caspeco\Http\Api\Customers
+     * @return \Schimpanz\Caspeco\Http\Customers
      */
     public function customers()
     {
@@ -86,7 +86,7 @@ class Caspeco
     /**
      * Get the merchants endpoint.
      *
-     * @return \Schimpanz\Caspeco\Http\Api\Merchants
+     * @return \Schimpanz\Caspeco\Http\Merchants
      */
     public function merchants()
     {
