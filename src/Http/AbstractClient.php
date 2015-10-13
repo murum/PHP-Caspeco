@@ -15,6 +15,7 @@ use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Schimpanz\Caspeco\Exceptions\HttpException;
 
 /**
  * This is the abstract client class.
@@ -85,7 +86,7 @@ abstract class AbstractClient
      * @param string $uri
      * @param array $options
      *
-     * @throws \Exception
+     * @throws \Schimpanz\Caspeco\Exceptions\HttpException
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
@@ -102,8 +103,14 @@ abstract class AbstractClient
             $request = $this->signature->sign($request);
 
             return $this->client->send($request);
-        } catch (RequestException $e) {
-            throw new Exception($e->getMessage(), $e->getResponse()->getStatusCode());
+        } catch (RequestException $exception) {
+            throw new HttpException(
+                $exception->getResponse()->getStatusCode(),
+                $exception->getMessage(),
+                $exception->getPrevious(),
+                $exception->getResponse()->getHeaders(),
+                $exception->getCode()
+            );
         }
     }
 
