@@ -11,7 +11,9 @@
 
 namespace Schimpanz\Caspeco\Http;
 
+use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -83,20 +85,26 @@ abstract class AbstractClient
      * @param string $uri
      * @param array $options
      *
+     * @throws \Exception
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
     protected function request($method, $uri, $options)
     {
-        $request = new Request(
-            $method,
-            $this->buildUriFromString($uri),
-            isset($options['headers']) ? $options['headers'] : [],
-            json_encode(isset($options['form_params']) ? $options['form_params'] : [])
-        );
+        try {
+            $request = new Request(
+                $method,
+                $this->buildUriFromString($uri),
+                isset($options['headers']) ? $options['headers'] : [],
+                json_encode(isset($options['form_params']) ? $options['form_params'] : [])
+            );
 
-        $request = $this->signature->sign($request);
+            $request = $this->signature->sign($request);
 
-        return $this->client->send($request);
+            return $this->client->send($request);
+        } catch (RequestException $e) {
+            throw new Exception($e->getMessage(), $e->getResponse()->getStatusCode());
+        }
     }
 
     /**
