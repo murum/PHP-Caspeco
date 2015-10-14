@@ -11,11 +11,12 @@
 
 namespace Schimpanz\Caspeco\Http;
 
-use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Schimpanz\Caspeco\Exceptions\AuthenticationException;
 use Schimpanz\Caspeco\Exceptions\HttpException;
+use Stringy\Stringy;
 
 /**
  * This is the abstract client class.
@@ -93,24 +94,29 @@ abstract class AbstractClient
     protected function request($method, $uri, $options)
     {
         try {
-            $request = new Request(
-                $method,
-                $this->buildUriFromString($uri),
-                isset($options['headers']) ? $options['headers'] : [],
-                json_encode(isset($options['form_params']) ? $options['form_params'] : [])
-            );
+            $uri = $this->buildUriFromString($uri);
+            $headers = isset($options['headers']) ? $options['headers'] : [];
+            $body = json_encode(isset($options['form_params']) ? $options['form_params'] : []);
+
+            $request = new Request($method, $uri, $headers, $body);
 
             $request = $this->signature->sign($request);
 
-            return $this->client->send($request);
-        } catch (RequestException $exception) {
-            throw new HttpException(
-                $exception->getResponse()->getStatusCode(),
-                $exception->getMessage(),
-                $exception->getPrevious(),
-                $exception->getResponse()->getHeaders(),
-                $exception->getCode()
-            );
+            // TODO: Fix this, it isn't pretty at all.
+            foreach ($request->getHeaders() as $name => $value) {
+                $options['headers'][$name] = $value[0];
+            }
+
+            return $this->client->request($method, $uri, $options);
+        } catch (RequestException $e) {
+            $code = $e->getResponse()->getStatusCode();
+            $message = $e->getResponse()->getBody()->getContents();
+
+            if (Stringy::create($message)->isJson()) {
+                throw new HttpException($e->getResponse()->getStatusCode(), json_decode($message)->Message);
+            }
+
+            throw new AuthenticationException($code, $message);
         }
     }
 

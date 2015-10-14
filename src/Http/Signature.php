@@ -74,7 +74,7 @@ final class Signature
         $date = $this->formatDate(new DateTime('now', new DateTimeZone('GMT')));
         $request = $request->withHeader('Date', $date);
 
-        $body = $request->getMethod() === 'get' ? '' : json_encode($request->getBody());
+        $body = strtolower($request->getMethod()) === 'get' ? '' : $request->getBody()->getContents();
         $digest = $this->hashBody($body);
         $request = $request->withHeader('Digest', $digest);
 
@@ -109,7 +109,7 @@ final class Signature
      */
     protected function formatDate(DateTime $time)
     {
-        return 'Tue, 13 Oct 2015 07:10:55 GMT'; //$time->format('D, d M Y H:i:s').' GMT';
+        return $time->format('D, d M Y H:i:s').' GMT';
     }
 
     /**
@@ -121,7 +121,7 @@ final class Signature
      */
     protected function hashBody($body)
     {
-        return 'SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; //'SHA-256='.base64_encode(hash('sha256', $body, true));
+        return 'SHA-256='.base64_encode(hash('sha256', $body, true));
     }
 
     /**
