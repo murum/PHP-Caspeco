@@ -75,7 +75,7 @@ final class Signature
         $request = $request->withHeader('Date', $date);
 
         $body = strtolower($request->getMethod()) === 'get' ? '' : $request->getBody()->getContents();
-        $digest = $this->hashBody($body);
+        $digest = $this->hashDigest($body);
         $request = $request->withHeader('Digest', $digest);
 
         $target = strtolower(sprintf('%s %s', $request->getMethod(), $request->getRequestTarget()));
@@ -119,8 +119,10 @@ final class Signature
      *
      * @return string
      */
-    protected function hashBody($body)
+    protected function hashDigest($body)
     {
+        $body = preg_replace('/\:/', ': ', $body);
+
         return 'SHA-256='.base64_encode(hash('sha256', $body, true));
     }
 
