@@ -87,6 +87,7 @@ abstract class AbstractClient
      * @param string $uri
      * @param array $options
      *
+     * @throws \GuzzleHttp\Exception\RequestException
      * @throws \Schimpanz\Caspeco\Exceptions\HttpException
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
@@ -107,17 +108,31 @@ abstract class AbstractClient
                 $options['headers'][$name] = $value[0];
             }
 
-            return $this->client->request($method, $uri, $options);
-        } catch (RequestException $e) {
-            $code = $e->getResponse()->getStatusCode();
-            $message = $e->getResponse()->getBody()->getContents();
+            $response = $this->client->request($method, $uri, $options);
 
-            if (Stringy::create($message)->isJson()) {
-                throw new HttpException($e->getResponse()->getStatusCode(), json_decode($message)->Message);
-            }
-
-            throw new AuthenticationException($code, $message);
+            return json_decode($response->getBody()->getContents());
+        } catch (RequestException $exception) {
+            $this->handleException($exception);
         }
+    }
+
+    /**
+     * Handle Guzzle exception.
+     *
+     * @param \GuzzleHttp\Exception\RequestException $exception
+     *
+     * @throws \Schimpanz\Caspeco\Exceptions\HttpException
+     */
+    protected function handleException(RequestException $exception)
+    {
+        $code = $exception->getResponse()->getStatusCode();
+        $message = $exception->getResponse()->getBody()->getContents();
+
+        if (Stringy::create($message)->isJson()) {
+            throw new HttpException($exception->getResponse()->getStatusCode(), json_decode($message)->Message);
+        }
+
+        throw new AuthenticationException($code, $message);
     }
 
     /**

@@ -11,14 +11,12 @@
 
 namespace Schimpanz\Caspeco\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException as Exception;
-
 /**
  * This is the authentication exception class.
  *
  * @author Vincent Klaiber <vincent@schimpanz.com>
  */
-class AuthenticationException extends Exception
+class AuthenticationException extends HttpException
 {
     //
 }

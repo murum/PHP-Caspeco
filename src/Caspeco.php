@@ -34,9 +34,10 @@ class Caspeco
     /**
      * Create a new Caspeco instance.
      *
-     * @throws \InvalidArgumentException
      *
      * @param array $config
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
