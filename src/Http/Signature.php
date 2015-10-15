@@ -121,8 +121,6 @@ final class Signature
      */
     protected function hashDigest($body)
     {
-        $body = preg_replace('/\:/', ': ', $body);
-
         return 'SHA-256='.base64_encode(hash('sha256', $body, true));
     }
 

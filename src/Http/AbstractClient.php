@@ -14,8 +14,10 @@ namespace Schimpanz\Caspeco\Http;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 use Schimpanz\Caspeco\Exceptions\AuthenticationException;
 use Schimpanz\Caspeco\Exceptions\HttpException;
+use Schimpanz\Caspeco\Exceptions\ValidationException;
 use Stringy\Stringy;
 
 /**
@@ -33,12 +35,7 @@ abstract class AbstractClient
     public function __construct(array $config)
     {
         $this->client = new Client(['base_uri' => $config['url']]);
-
-        $this->signature = new Signature(
-            $config['id'],
-            $config['secret'],
-            $config['url']
-        );
+        $this->signature = new Signature($config['id'], $config['secret'], $config['url']);
     }
 
     /**
@@ -87,30 +84,51 @@ abstract class AbstractClient
      * @param string $uri
      * @param array $options
      *
+     * @return mixed
+     */
+    protected function request($method, $uri, array $options = [])
+    {
+        $body = null;
+
+        if (isset($options['form_params'])) {
+            $body = str_replace(':', ': ', json_encode($options['form_params']));
+            unset($options['form_params']);
+        }
+
+        $uri = $this->buildUriFromString($uri);
+
+        $request = new Request($method, $uri, [], $body);
+        $request = $this->signature->sign($request);
+
+        $options['body'] = $request->getBody();
+        $options['headers'] = $request->getHeaders();
+
+        return $this->send($request, $options);
+    }
+
+    /**
+     * Send the given request.
+     *
+     * @param \Psr\Http\Message\RequestInterface $request
+     * @param array $options
+     *
      * @throws \GuzzleHttp\Exception\RequestException
      * @throws \Schimpanz\Caspeco\Exceptions\HttpException
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed
      */
-    protected function request($method, $uri, $options)
+    protected function send(RequestInterface $request, array $options = [])
     {
         try {
-            $uri = $this->buildUriFromString($uri);
-            $headers = isset($options['headers']) ? $options['headers'] : [];
-            $body = json_encode(isset($options['form_params']) ? $options['form_params'] : []);
+            $response = $this->client->send($request, $options);
 
-            $request = new Request($method, $uri, $headers, $body);
+            $body = json_decode($response->getBody()->getContents());
 
-            $request = $this->signature->sign($request);
-
-            // TODO: Fix this, it isn't pretty at all.
-            foreach ($request->getHeaders() as $name => $value) {
-                $options['headers'][$name] = $value[0];
+            if (property_exists($body, 'Message')) {
+                throw new ValidationException(400, $body->Message);
             }
 
-            $response = $this->client->request($method, $uri, $options);
-
-            return json_decode($response->getBody()->getContents());
+            return $body;
         } catch (RequestException $exception) {
             $this->handleException($exception);
         }
