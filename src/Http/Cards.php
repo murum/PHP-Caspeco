@@ -28,6 +28,6 @@ final class Cards extends AbstractClient
      */
     public function create($customerId, $params = [])
     {
-        return $this->post('customers/'.$customerId.'/cards', ['form_params' => $params]);
+        return $this->post('customers/'.$customerId.'/cards', ['json' => $params]);
     }
 }

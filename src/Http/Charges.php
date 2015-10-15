@@ -39,7 +39,7 @@ final class Charges extends AbstractClient
      */
     public function create($params = [])
     {
-        return $this->post('charges', ['form_params' => $params]);
+        return $this->post('charges', ['json' => $params]);
     }
 
     /**

@@ -27,7 +27,7 @@ final class Customers extends AbstractClient
      */
     public function create($params = [])
     {
-        return $this->post('customers', ['form_params' => $params]);
+        return $this->post('customers', ['json' => $params]);
     }
 
     /**

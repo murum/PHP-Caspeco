@@ -88,19 +88,13 @@ abstract class AbstractClient
      */
     protected function request($method, $uri, array $options = [])
     {
-        $body = null;
-
-        if (isset($options['form_params'])) {
-            $body = str_replace(':', ': ', json_encode($options['form_params']));
-            unset($options['form_params']);
-        }
-
         $uri = $this->buildUriFromString($uri);
+
+        $body = isset($options['json']) ? json_encode($options['json']) : null;
 
         $request = new Request($method, $uri, [], $body);
         $request = $this->signature->sign($request);
 
-        $options['body'] = $request->getBody();
         $options['headers'] = $request->getHeaders();
 
         return $this->send($request, $options);
