@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.2.0 (upcoming)
+## 0.2.0 (released 2015-10-15)
 
 - Better error handling
 - Added validation handler
