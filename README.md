@@ -122,7 +122,7 @@ App::make('Foo')->bar();
 ```
 
 ## Documentation
-There are other methods in this package that are not documented here. Please see [Caspeco's documentation](http://docs.caspecopayment.apiary.io/) to find out more about the API. If you've any questions, don't hesitate to open an issue.
+There are other methods in this package that are not documented here. Instead, please see [Caspeco's documentation](http://docs.caspecopayment.apiary.io/). If you've any questions, don't hesitate to open an issue.
 
 ## License
 
