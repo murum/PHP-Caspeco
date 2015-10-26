@@ -19,6 +19,18 @@ namespace Schimpanz\Caspeco\Http;
 final class Customers extends AbstractClient
 {
     /**
+     * Authenticate a customer.
+     *
+     * @param array $params
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function authenticate(array $params)
+    {
+        return $this->post('authenticate', ['json' => $params]);
+    }
+
+    /**
      * Create a new customer.
      *
      * @param array $params
