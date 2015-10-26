@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1 (released 2015-10-26)
+
+- Fix bug in authentication call
+
 ## 0.3.0 (released 2015-10-26)
 
 - Add authentication call
