@@ -27,7 +27,7 @@ final class Customers extends AbstractClient
      */
     public function authenticate(array $params)
     {
-        return $this->post('authenticate', ['json' => $params]);
+        return $this->post('authentication', ['json' => $params]);
     }
 
     /**
