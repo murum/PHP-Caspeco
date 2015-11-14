@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.4.0 (released 2015-10-26)
+## 0.4.0 (released 2015-11-14)
 
 - Laravel 5.2 support
 - Update dependencies
