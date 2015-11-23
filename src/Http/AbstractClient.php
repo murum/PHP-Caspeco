@@ -119,7 +119,7 @@ abstract class AbstractClient
             $body = json_decode($response->getBody()->getContents());
 
             if (property_exists($body, 'Message')) {
-                throw new ValidationException(400, $body->Message);
+                throw new ValidationException(400, $this->formatJsonError($response->getBody()->getContents()));
             }
 
             return $body;
@@ -141,7 +141,7 @@ abstract class AbstractClient
         $message = $exception->getResponse()->getBody()->getContents();
 
         if (Stringy::create($message)->isJson()) {
-            throw new HttpException($exception->getResponse()->getStatusCode(), json_decode($message)->Message);
+            throw new HttpException($exception->getResponse()->getStatusCode(), $this->formatJsonError($message));
         }
 
         throw new AuthenticationException($code, $message);
@@ -157,5 +157,19 @@ abstract class AbstractClient
     protected function buildUriFromString($uri)
     {
         return $uri = '/v1/'.$uri.'/';
+    }
+
+    /**
+     * Format JSON error message.
+     *
+     * @param string $json
+     *
+     * @return string
+     */
+    protected function formatJsonError($json)
+    {
+        $error = json_decode($json);
+
+        return sprintf('%s (%s)', $error->Message, $error->Code);
     }
 }
