@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": "^5.5.9 || ^7.0",
         "guzzlehttp/guzzle": "^6.1",
         "symfony/http-kernel": "^2.7",
         "danielstjules/stringy": "^1.0"
