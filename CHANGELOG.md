@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1 (released 2016-01-17)
+
+- Lumen 5.2 support
+
 ## 0.5.0 (released 2015-11-23)
 
 - Better error messages
