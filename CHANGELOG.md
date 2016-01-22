@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2 (released 2016-01-22)
+
+- Add Symfony 3.0 support
+
 ## 0.5.1 (released 2016-01-17)
 
 - Lumen 5.2 support
