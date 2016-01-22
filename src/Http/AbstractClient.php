@@ -16,6 +16,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Schimpanz\Caspeco\Exceptions\AuthenticationException;
+use Schimpanz\Caspeco\Exceptions\HtmlException;
 use Schimpanz\Caspeco\Exceptions\HttpException;
 use Schimpanz\Caspeco\Exceptions\ValidationException;
 use Stringy\Stringy;
@@ -142,6 +143,10 @@ abstract class AbstractClient
 
         if (Stringy::create($message)->isJson()) {
             throw new HttpException($exception->getResponse()->getStatusCode(), $this->formatJsonError($message));
+        }
+
+        if (Stringy::create($message)->contains('html')) {
+            throw new HtmlException($exception->getResponse()->getStatusCode(), $message);
         }
 
         throw new AuthenticationException($code, $message);
