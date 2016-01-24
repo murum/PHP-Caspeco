@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.4 (released 2016-01-24)
+
+- Update HTML exception
+
 ## 0.5.3 (released 2016-01-22)
 
 - Add HTML exception

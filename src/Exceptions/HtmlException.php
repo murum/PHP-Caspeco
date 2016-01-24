@@ -11,8 +11,6 @@
 
 namespace Schimpanz\Caspeco\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
-
 /**
  * This is the html exception class.
  *
