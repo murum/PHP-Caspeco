@@ -3,28 +3,28 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco\Http;
+namespace Hoy\Caspeco\Http;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
-use Schimpanz\Caspeco\Exceptions\AuthenticationException;
-use Schimpanz\Caspeco\Exceptions\HtmlException;
-use Schimpanz\Caspeco\Exceptions\HttpException;
-use Schimpanz\Caspeco\Exceptions\ValidationException;
+use Hoy\Caspeco\Exceptions\AuthenticationException;
+use Hoy\Caspeco\Exceptions\HtmlException;
+use Hoy\Caspeco\Exceptions\HttpException;
+use Hoy\Caspeco\Exceptions\ValidationException;
 use Stringy\Stringy;
 
 /**
  * This is the abstract client class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 abstract class AbstractClient
 {
@@ -108,7 +108,7 @@ abstract class AbstractClient
      * @param array $options
      *
      * @throws \GuzzleHttp\Exception\RequestException
-     * @throws \Schimpanz\Caspeco\Exceptions\HttpException
+     * @throws \Hoy\Caspeco\Exceptions\HttpException
      *
      * @return mixed
      */
@@ -134,7 +134,7 @@ abstract class AbstractClient
      *
      * @param \GuzzleHttp\Exception\RequestException $exception
      *
-     * @throws \Schimpanz\Caspeco\Exceptions\HttpException
+     * @throws \Hoy\Caspeco\Exceptions\HttpException
      */
     protected function handleException(RequestException $exception)
     {

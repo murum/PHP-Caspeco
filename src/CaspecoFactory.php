@@ -3,20 +3,20 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco;
+namespace Hoy\Caspeco;
 
 use InvalidArgumentException;
 
 /**
  * This is the Caspeco factory class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 class CaspecoFactory
 {
@@ -25,7 +25,7 @@ class CaspecoFactory
      *
      * @param array $config
      *
-     * @return \Schimpanz\Caspeco\Caspeco
+     * @return \Hoy\Caspeco\Caspeco
      */
     public function make(array $config)
     {
@@ -61,7 +61,7 @@ class CaspecoFactory
      *
      * @param array $config
      *
-     * @return \Schimpanz\Caspeco\Caspeco
+     * @return \Hoy\Caspeco\Caspeco
      */
     protected function getClient(array $config)
     {

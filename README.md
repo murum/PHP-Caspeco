@@ -4,17 +4,17 @@
 
 A Caspeco API library for PHP with Laravel support.
 
-[![Build Status](https://img.shields.io/travis/schimpanz/PHP-Caspeco/master.svg?style=flat)](https://travis-ci.org/schimpanz/PHP-Caspeco)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/schimpanz/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/schimpanz/PHP-Caspeco/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/schimpanz/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/schimpanz/PHP-Caspeco)
-[![Latest Version](https://img.shields.io/github/release/schimpanz/PHP-Caspeco.svg?style=flat)](https://github.com/schimpanz/PHP-Caspeco/releases)
-[![License](https://img.shields.io/packagist/l/schimpanz/caspeco.svg?style=flat)](https://packagist.org/packages/schimpanz/caspeco)
+[![Build Status](https://img.shields.io/travis/hoy/PHP-Caspeco/master.svg?style=flat)](https://travis-ci.org/hoy/PHP-Caspeco)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/hoy/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoy/PHP-Caspeco/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/hoy/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoy/PHP-Caspeco)
+[![Latest Version](https://img.shields.io/github/release/hoy/PHP-Caspeco.svg?style=flat)](https://github.com/hoy/PHP-Caspeco/releases)
+[![License](https://img.shields.io/packagist/l/hoy/caspeco.svg?style=flat)](https://packagist.org/packages/hoy/caspeco)
 
 ## Installation
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ```bash
-composer require schimpanz/pushwoosh
+composer require hoy/pushwoosh
 ```
 
 ### Using Laravel?
@@ -22,13 +22,13 @@ composer require schimpanz/pushwoosh
 Add the service provider to `config/app.php` in the `providers` array.
 
 ```php
-Schimpanz\Caspeco\CaspecoServiceProvider::class
+Hoy\Caspeco\CaspecoServiceProvider::class
 ```
 
 If you want you can use the [facade](http://laravel.com/docs/facades). Add the reference in `config/app.php` to your aliases array.
 
 ```php
-'Caspeco' => Schimpanz\Caspeco\Facades\Caspeco::class
+'Caspeco' => Hoy\Caspeco\Facades\Caspeco::class
 ```
 
 ## Configuration
@@ -53,7 +53,7 @@ This option `connections` is where each of the connections are setup for your ap
 
 #### CaspecoManager
 
-This is the class of most interest. It is bound to the ioc container as `caspeco` and can be accessed using the `Facades\Caspeco` facade. This class implements the ManagerInterface by extending AbstractManager. The interface and abstract class are both part of [Graham Campbell's](https://github.com/GrahamCampbell) [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager) package, so you may want to go and checkout the docs for how to use the manager class over at that repository. Note that the connection class returned will always be an instance of `Schimpanz\Caspeco\Caspeco`.
+This is the class of most interest. It is bound to the ioc container as `caspeco` and can be accessed using the `Facades\Caspeco` facade. This class implements the ManagerInterface by extending AbstractManager. The interface and abstract class are both part of [Graham Campbell's](https://github.com/GrahamCampbell) [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager) package, so you may want to go and checkout the docs for how to use the manager class over at that repository. Note that the connection class returned will always be an instance of `Hoy\Caspeco\Caspeco`.
 
 #### Facades\Caspeco
 
@@ -68,7 +68,7 @@ Here you can see an example of just how simple this package is to use. Out of th
 
 ```php
 // You can alias this in config/app.php.
-use Schimpanz\Caspeco\Facades\Caspeco;
+use Hoy\Caspeco\Facades\Caspeco;
 
 Caspeco::charges()->find($id);
 // We're done here - how easy was that, it just works!
@@ -77,10 +77,10 @@ Caspeco::charges()->capture($id);
 // This example is simple and there are far more methods available.
 ```
 
-The Caspeco manager will behave like it is a `Schimpanz\Caspeco\Caspeco`. If you want to call specific connections, you can do that with the connection method:
+The Caspeco manager will behave like it is a `Hoy\Caspeco\Caspeco`. If you want to call specific connections, you can do that with the connection method:
 
 ```php
-use Schimpanz\Caspeco\Facades\Caspeco;
+use Hoy\Caspeco\Facades\Caspeco;
 
 // Writing this…
 Caspeco::connection('main')->customers()->find($id);
@@ -101,7 +101,7 @@ Caspeco::setDefaultConnection('alternative'); // The default is now alternative.
 If you prefer to use dependency injection over facades like me, then you can inject the manager:
 
 ```php
-use Schimpanz\Caspeco\CaspecoManager;
+use Hoy\Caspeco\CaspecoManager;
 
 class Foo
 {

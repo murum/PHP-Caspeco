@@ -3,13 +3,13 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco;
+namespace Hoy\Caspeco;
 
 use GrahamCampbell\Manager\AbstractManager;
 use Illuminate\Contracts\Config\Repository;
@@ -17,14 +17,14 @@ use Illuminate\Contracts\Config\Repository;
 /**
  * This is the Caspeco manager class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 class CaspecoManager extends AbstractManager
 {
     /**
      * The factory instance.
      *
-     * @var \Schimpanz\Caspeco\CaspecoFactory
+     * @var \Hoy\Caspeco\CaspecoFactory
      */
     private $factory;
 
@@ -32,7 +32,7 @@ class CaspecoManager extends AbstractManager
      * Create a new Caspeco manager instance.
      *
      * @param \Illuminate\Contracts\Config\Repository $config
-     * @param \Schimpanz\Caspeco\CaspecoFactory $factory
+     * @param \Hoy\Caspeco\CaspecoFactory $factory
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class CaspecoManager extends AbstractManager
     /**
      * Get the factory instance.
      *
-     * @return \Schimpanz\Caspeco\CaspecoFactory
+     * @return \Hoy\Caspeco\CaspecoFactory
      */
     public function getFactory()
     {

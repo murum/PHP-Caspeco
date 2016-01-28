@@ -3,23 +3,23 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Tests\Caspeco;
+namespace Hoy\Tests\Caspeco;
 
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
-use Schimpanz\Caspeco\Caspeco;
-use Schimpanz\Caspeco\CaspecoFactory;
-use Schimpanz\Caspeco\CaspecoManager;
+use Hoy\Caspeco\Caspeco;
+use Hoy\Caspeco\CaspecoFactory;
+use Hoy\Caspeco\CaspecoManager;
 
 /**
  * This is the service provider test class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 class ServiceProviderTest extends AbstractTestCase
 {

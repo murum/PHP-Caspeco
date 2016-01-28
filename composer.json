@@ -1,12 +1,12 @@
 {
-    "name": "schimpanz/caspeco",
+    "name": "hoy/caspeco",
     "description": "A Caspeco API library with Laravel support",
     "license": "MIT",
-    "keywords": ["caspeco", "payments", "laravel"],
+    "keywords": ["caspeco", "payments", "laravel", "hoy"],
     "authors": [
         {
             "name": "Vincent Klaiber",
-            "email": "vincent@schimpanz.com"
+            "email": "vincent@hoy.se"
         }
     ],
     "require": {
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Schimpanz\\Caspeco\\": "src/"
+            "Hoy\\Caspeco\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Schimpanz\\Tests\\Caspeco\\": "tests/"
+            "Hoy\\Tests\\Caspeco\\": "tests/"
         }
     },
     "config": {

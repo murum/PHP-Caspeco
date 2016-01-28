@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0 (upcoming)
+
+- Moved to new namespace
+
 ## 0.5.4 (released 2016-01-24)
 
 - Update HTML exception

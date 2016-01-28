@@ -3,13 +3,13 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco;
+namespace Hoy\Caspeco;
 
 use Illuminate\Contracts\Container\Container as Application;
 use Illuminate\Foundation\Application as LaravelApplication;
@@ -19,7 +19,7 @@ use Laravel\Lumen\Application as LumenApplication;
 /**
  * This is the Caspeco service provider class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 class CaspecoServiceProvider extends ServiceProvider
 {

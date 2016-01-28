@@ -3,20 +3,20 @@
 /*
  * This file is part of Caspeco.
  *
- (c) Schimpanz Solutions <info@schimpanz.com>
+ (c) HOY Multimedia AB <info@hoy.se>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Schimpanz\Caspeco\Facades;
+namespace Hoy\Caspeco\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * This is the Caspeco facade class.
  *
- * @author Vincent Klaiber <vincent@schimpanz.com>
+ * @author Vincent Klaiber <vincent@hoy.se>
  */
 class Caspeco extends Facade
 {
