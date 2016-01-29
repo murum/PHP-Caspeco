@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.0 (2016-01-29)
+## 1.0.0 (released 2016-01-29)
 
 - Moved to new namespace
 - First stable version
