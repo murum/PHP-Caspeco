@@ -4,10 +4,10 @@
 
 A Caspeco API library for PHP with Laravel support.
 
-[![Build Status](https://img.shields.io/travis/hoy/PHP-Caspeco/master.svg?style=flat)](https://travis-ci.org/hoy/PHP-Caspeco)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/hoy/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoy/PHP-Caspeco/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/hoy/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoy/PHP-Caspeco)
-[![Latest Version](https://img.shields.io/github/release/hoy/PHP-Caspeco.svg?style=flat)](https://github.com/hoy/PHP-Caspeco/releases)
+[![Build Status](https://img.shields.io/travis/hoymultimedia/PHP-Caspeco/master.svg?style=flat)](https://travis-ci.org/hoymultimedia/PHP-Caspeco)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/hoymultimedia/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoymultimedia/PHP-Caspeco/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/hoymultimedia/PHP-Caspeco.svg?style=flat)](https://scrutinizer-ci.com/g/hoymultimedia/PHP-Caspeco)
+[![Latest Version](https://img.shields.io/github/release/hoymultimedia/PHP-Caspeco.svg?style=flat)](https://github.com/hoymultimedia/PHP-Caspeco/releases)
 [![License](https://img.shields.io/packagist/l/hoy/caspeco.svg?style=flat)](https://packagist.org/packages/hoy/caspeco)
 
 ## Installation
