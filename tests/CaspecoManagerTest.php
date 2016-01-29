@@ -11,11 +11,11 @@
 
 namespace Hoy\Tests\Caspeco;
 
-use Illuminate\Contracts\Config\Repository;
-use Mockery;
 use Hoy\Caspeco\Caspeco;
 use Hoy\Caspeco\CaspecoFactory;
 use Hoy\Caspeco\CaspecoManager;
+use Illuminate\Contracts\Config\Repository;
+use Mockery;
 
 /**
  * This is the Caspeco manager test class.

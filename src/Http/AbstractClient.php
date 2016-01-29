@@ -14,11 +14,11 @@ namespace Hoy\Caspeco\Http;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\RequestInterface;
 use Hoy\Caspeco\Exceptions\AuthenticationException;
 use Hoy\Caspeco\Exceptions\HtmlException;
 use Hoy\Caspeco\Exceptions\HttpException;
 use Hoy\Caspeco\Exceptions\ValidationException;
+use Psr\Http\Message\RequestInterface;
 use Stringy\Stringy;
 
 /**

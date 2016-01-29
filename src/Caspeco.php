@@ -11,11 +11,11 @@
 
 namespace Hoy\Caspeco;
 
-use InvalidArgumentException;
 use Hoy\Caspeco\Http\Cards;
 use Hoy\Caspeco\Http\Charges;
 use Hoy\Caspeco\Http\Customers;
 use Hoy\Caspeco\Http\Merchants;
+use InvalidArgumentException;
 
 /**
  * This is the Caspeco class.
