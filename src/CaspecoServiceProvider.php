@@ -11,7 +11,7 @@
 
 namespace Hoy\Caspeco;
 
-use Illuminate\Contracts\Container\Container as Application;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -58,62 +58,56 @@ class CaspecoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerFactory($this->app);
-        $this->registerManager($this->app);
-        $this->registerBindings($this->app);
+        $this->registerFactory();
+        $this->registerManager();
+        $this->registerBindings();
     }
 
     /**
      * Register the factory class.
      *
-     * @param \Illuminate\Contracts\Container\Container $app
-     *
      * @return void
      */
-    protected function registerFactory(Application $app)
+    protected function registerFactory()
     {
-        $app->singleton('caspeco.factory', function () {
+        $this->app->singleton('caspeco.factory', function () {
             return new CaspecoFactory();
         });
 
-        $app->alias('caspeco.factory', CaspecoFactory::class);
+        $this->app->alias('caspeco.factory', CaspecoFactory::class);
     }
 
     /**
      * Register the manager class.
      *
-     * @param \Illuminate\Contracts\Container\Container $app
-     *
      * @return void
      */
-    protected function registerManager(Application $app)
+    protected function registerManager()
     {
-        $app->singleton('caspeco', function ($app) {
+        $this->app->singleton('caspeco', function (Container $app) {
             $config = $app['config'];
             $factory = $app['caspeco.factory'];
 
             return new CaspecoManager($config, $factory);
         });
 
-        $app->alias('caspeco', CaspecoManager::class);
+        $this->app->alias('caspeco', CaspecoManager::class);
     }
 
     /**
      * Register the bindings.
      *
-     * @param \Illuminate\Contracts\Container\Container $app
-     *
      * @return void
      */
-    protected function registerBindings(Application $app)
+    protected function registerBindings()
     {
-        $app->bind('caspeco.connection', function ($app) {
+        $this->app->bind('caspeco.connection', function (Container $app) {
             $manager = $app['caspeco'];
 
             return $manager->connection();
         });
 
-        $app->alias('caspeco.connection', Caspeco::class);
+        $this->app->alias('caspeco.connection', Caspeco::class);
     }
 
     /**
