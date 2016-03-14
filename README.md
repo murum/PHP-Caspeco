@@ -14,7 +14,7 @@ A Caspeco API library for PHP with Laravel support.
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ```bash
-composer require schimpanz/caspeco
+composer require hoy/caspeco
 ```
 
 ### Using Laravel?
