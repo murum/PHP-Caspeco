@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Facade;
  * This is the Caspeco facade class.
  *
  * @author Vincent Klaiber <vincent@hoy.se>
+ * @see Hoy\Caspeco\Caspeco
  */
 class Caspeco extends Facade
 {
