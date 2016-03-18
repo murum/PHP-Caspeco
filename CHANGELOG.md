@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.2 (released 2016-03-18)
+
+- Add remove customer request
+
 ## 1.0.1 (released 2016-01-30)
 
 - Improved service provider
