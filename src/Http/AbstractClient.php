@@ -79,6 +79,19 @@ abstract class AbstractClient
     }
 
     /**
+     * Make a delete request.
+     *
+     * @param string $uri
+     * @param array $options
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
+    public function delete($uri, array $options = [])
+    {
+        return $this->request(__FUNCTION__, $uri, $options);
+    }
+
+    /**
      * Sign and send request.
      *
      * @param string $method
