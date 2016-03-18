@@ -53,4 +53,17 @@ final class Customers extends AbstractClient
     {
         return $this->get('customers/'.$id);
     }
+    
+    
+    /**
+     * delete a customer by their id
+     *
+     * @param int $id
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function remove($id)
+    {
+        return $this->delete('customers/'.$id);
+    }
 }
