@@ -130,10 +130,11 @@ abstract class AbstractClient
         try {
             $response = $this->client->send($request, $options);
 
-            $body = json_decode($response->getBody()->getContents());
+            $content = $response->getBody()->getContents();
+            $body = json_decode($content);
 
             if (property_exists($body, 'Message')) {
-                throw new ValidationException(400, $this->formatJsonError($response->getBody()->getContents()));
+                throw new ValidationException(400, $this->formatJsonError($content));
             }
 
             return $body;
