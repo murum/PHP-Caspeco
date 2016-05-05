@@ -34,26 +34,13 @@ class Caspeco
     /**
      * Create a new Caspeco instance.
      *
-     *
      * @param array $config
      *
-     * @throws \InvalidArgumentException
+     * @return void
      */
     public function __construct(array $config = [])
     {
-        if (!array_key_exists('url', $config)) {
-            $config['url'] = 'https://pay.caspeco.net';
-        }
-
-        if (!array_key_exists('id', $config)) {
-            throw new InvalidArgumentException('The Caspeco client configuration is missing the "id" parameter.');
-        }
-
-        if (!array_key_exists('secret', $config)) {
-            throw new InvalidArgumentException('The Caspeco client configuration is missing the "secret" parameter.');
-        }
-
-        $this->config = $config;
+        $this->config = $this->getConfig($config);
     }
 
     /**
@@ -94,5 +81,31 @@ class Caspeco
     public function merchants()
     {
         return new Merchants($this->config);
+    }
+
+    /**
+     * Get the configuration data.
+     *
+     * @param array $config
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return array
+     */
+    protected function getConfig(array $config)
+    {
+        $keys = ['id', 'secret'];
+
+        foreach ($keys as $key) {
+            if (!array_key_exists($key, $config)) {
+                throw new InvalidArgumentException("Missing configuration key [$key].");
+            }
+        }
+
+        if (!array_key_exists('url', $config)) {
+            $config['url'] = 'https://pay.caspeco.net';
+        }
+
+        return array_only($config, ['id', 'secret', 'url']);
     }
 }
